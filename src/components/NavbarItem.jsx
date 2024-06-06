@@ -1,17 +1,28 @@
 'use client'
 
-import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
-import React from 'react'
+import React, { Suspense } from 'react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
-const NavbarItem = ({title,param}) => {
-    const searchParams = useSearchParams()
-    const genre = searchParams.get('genre')
-  return (
-    <div>
-      <Link className={`hover:text-amber-600 font-semibold ${genre === param ? 'underline underline-offset-8 decoration-4 decoration-amber-500':''} `} href={`/?genre=${param}`}>{title}</Link>
-    </div>
-  )
-}
+const NavbarItemContent = ({ title, param }) => {
+    const searchParams = useSearchParams();
+    const genre = searchParams.get('genre');
+  
+    return (
+        <Link className={`hover:text-amber-600 font-semibold ${genre === param ? 'underline underline-offset-8 decoration-4 decoration-amber-500':''} `} href={`/?genre=${param}`}>
+            {title}
+        </Link>
+    );
+};
 
-export default NavbarItem
+const NavbarItem = ({ title, param }) => {
+    return (
+        <div>
+            <Suspense fallback={<div>Loading...</div>}>
+                <NavbarItemContent title={title} param={param} />
+            </Suspense>
+        </div>
+    );
+};
+
+export default NavbarItem;
