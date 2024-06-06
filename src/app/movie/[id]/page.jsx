@@ -12,8 +12,7 @@ const Movie = async({params}) => {
     <div className='w-full'>
         <div className='p-4 md:pt-8 flex flex-col md:flex-row content-center max-w-6ml mx-auto md:space-x-6'>
             
-            
-            <CustomImage src={`https://image.tmdb.org/t/p/original${movie.backdrop_path || movie.poster_path}`} alt={movie.title || movie.name} className={'rounded-lg mx-auto max-w-full h-full w-auto'}/>
+            <CustomImage src={`https://image.tmdb.org/t/p/original${movie.backdrop_path || movie.poster_path}`} alt={movie.title || movie.name} className={'rounded-lg mx-auto max-w-full h-full'}/>
 
             <div className='p-2'>
 
